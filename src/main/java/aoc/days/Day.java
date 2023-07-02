@@ -1,6 +1,6 @@
 package aoc.days;
 
-import aoc.FileUtils;
+import aoc.utils.FileUtils;
 
 import java.io.InputStream;
 import java.util.ArrayList;

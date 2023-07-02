@@ -1,4 +1,4 @@
-package aoc;
+package aoc.utils;
 
 import aoc.days.AdventDay;
 
