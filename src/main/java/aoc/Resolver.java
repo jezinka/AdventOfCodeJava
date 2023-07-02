@@ -1,27 +1,25 @@
 package aoc;
 
 import aoc.days.Day;
-import aoc.days.aoc_2015.Day01a;
-import aoc.days.aoc_2015.Day01b;
-import aoc.days.aoc_2015.Day02a;
-import aoc.days.aoc_2015.Day02b;
+import org.reflections.Reflections;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class Resolver {
 
     public static void main(String[] args) {
-        List<Day> days = new ArrayList<>();
-        if (args.length == 0) {
-            days.add(new Day01a());
-            days.add(new Day01b());
-            days.add(new Day02a());
-            days.add(new Day02b());
-        } else {
-            String dayArg = args[0];
-            days.add(getDay(dayArg));
+
+        String dayName = "";
+        if (args.length != 0) {
+            dayName = args[0];
         }
+
+        List<Day> days = getDaysByReflection(dayName);
+
         days.forEach(day ->
                 {
                     day.resolve();
@@ -30,18 +28,21 @@ public class Resolver {
         );
     }
 
-    private static Day getDay(String input) {
-        switch (input) {
-            case "2015-01a":
-                return new Day01a();
-            case "2015-01b":
-                return new Day01b();
-            case "2015-02a":
-                return new Day02a();
-            case "2015-02b":
-                return new Day02b();
-        }
-        throw new UnsupportedOperationException();
+    private static List<Day> getDaysByReflection(String dayName) {
+        List<Day> days = new ArrayList<>();
+        Reflections reflections = new Reflections("aoc.days");
+        Set<Class<? extends Day>> classes = reflections.getSubTypesOf(Day.class);
+        classes.forEach(clazz -> {
+            try {
+                Day day = clazz.getDeclaredConstructor().newInstance();
+                if (dayName.isBlank() || dayName.isEmpty() || day.getName().equals(dayName)) {
+                    days.add(day);
+                }
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        });
+        return days.stream().sorted(Comparator.comparing(Day::getName)).toList();
     }
 }
 
