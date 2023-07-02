@@ -14,10 +14,10 @@ public class Resolver {
     public static void main(String[] args) {
         List<Day> days = new ArrayList<>();
         if (args.length == 0) {
-            days.add(new Day01a("1.txt"));
-            days.add(new Day01b("1.txt"));
-            days.add(new Day02a("2.txt"));
-            days.add(new Day02b("2.txt"));
+            days.add(new Day01a());
+            days.add(new Day01b());
+            days.add(new Day02a());
+            days.add(new Day02b());
         } else {
             String dayArg = args[0];
             days.add(getDay(dayArg));
@@ -33,13 +33,13 @@ public class Resolver {
     private static Day getDay(String input) {
         switch (input) {
             case "2015-01a":
-                return new Day01a("1.txt");
+                return new Day01a();
             case "2015-01b":
-                return new Day01b("1.txt");
+                return new Day01b();
             case "2015-02a":
-                return new Day02a("2.txt");
+                return new Day02a();
             case "2015-02b":
-                return new Day02b("2.txt");
+                return new Day02b();
         }
         throw new UnsupportedOperationException();
     }

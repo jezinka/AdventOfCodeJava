@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Day01b extends Day {
 
-    public Day01b(String s) {
-        super(s);
+    public Day01b() {
+        super("1.txt");
     }
 
     public Day01b(List<String> input) {

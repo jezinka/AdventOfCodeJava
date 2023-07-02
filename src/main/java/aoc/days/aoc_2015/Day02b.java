@@ -9,8 +9,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class Day02b extends Day {
 
-    public Day02b(String s) {
-        super(s);
+    public Day02b() {
+        super("2.txt");
     }
 
     public Day02b(List<String> input) {
