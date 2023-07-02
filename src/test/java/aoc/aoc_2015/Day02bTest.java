@@ -1,5 +1,6 @@
 package aoc.aoc_2015;
 
+import aoc.days.Day;
 import aoc.days.aoc_2015.Day02b;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ class Day02bTest {
     @CsvSource(delimiter = '|', value = {"2x3x4|34", "1x1x10|14"})
     void resolve_test(String input, String output) {
         //given:
-        Day02b day = new Day02b(List.of(input));
+        Day day = new Day02b(List.of(input));
 
         //when:
         day.resolve();

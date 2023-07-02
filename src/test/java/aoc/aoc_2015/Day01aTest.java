@@ -1,5 +1,6 @@
 package aoc.aoc_2015;
 
+import aoc.days.Day;
 import aoc.days.aoc_2015.Day01a;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +19,7 @@ class Day01aTest {
     })
     void resolve_test(String input, String output) {
         //given:
-        Day01a day = new Day01a(List.of(input));
+        Day day = new Day01a(List.of(input));
 
         //when:
         day.resolve();

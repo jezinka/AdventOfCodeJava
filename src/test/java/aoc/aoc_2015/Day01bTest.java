@@ -1,5 +1,6 @@
 package aoc.aoc_2015;
 
+import aoc.days.Day;
 import aoc.days.aoc_2015.Day01a;
 import aoc.days.aoc_2015.Day01b;
 import org.junit.jupiter.api.Assertions;
@@ -16,7 +17,7 @@ class Day01bTest {
     })
     void resolve_test(String input, String output) {
         //given:
-        Day01b day = new Day01b(List.of(input));
+        Day day = new Day01b(List.of(input));
 
         //when:
         day.resolve();
