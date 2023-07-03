@@ -1,7 +1,6 @@
 package aoc.aoc_2015;
 
 import aoc.days.Day;
-import aoc.days.aoc_2015.Day03b;
 import aoc.days.aoc_2015.Day04a;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
