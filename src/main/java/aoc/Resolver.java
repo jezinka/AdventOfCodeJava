@@ -1,9 +1,10 @@
 package aoc;
 
-import aoc.days.Day;
+import aoc.days.AdventDay;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -18,7 +19,7 @@ public class Resolver {
             dayName = args[0];
         }
 
-        List<Day> days = getDaysByReflection(dayName);
+        List<AdventDay> days = getDaysByReflection(dayName);
 
         days.forEach(day ->
                 {
@@ -28,21 +29,23 @@ public class Resolver {
         );
     }
 
-    private static List<Day> getDaysByReflection(String dayName) {
-        List<Day> days = new ArrayList<>();
+    private static List<AdventDay> getDaysByReflection(String dayName) {
+        List<AdventDay> days = new ArrayList<>();
         Reflections reflections = new Reflections("aoc.days");
-        Set<Class<? extends Day>> classes = reflections.getSubTypesOf(Day.class);
+        Set<Class<? extends AdventDay>> classes = reflections.getSubTypesOf(AdventDay.class);
         classes.forEach(clazz -> {
             try {
-                Day day = clazz.getDeclaredConstructor().newInstance();
-                if (dayName.isBlank() || dayName.isEmpty() || day.getName().equals(dayName)) {
-                    days.add(day);
+                if (!Modifier.isAbstract(clazz.getModifiers())) {
+                    AdventDay day = clazz.getDeclaredConstructor().newInstance();
+                    if (dayName.isBlank() || dayName.isEmpty() || day.getName().equals(dayName)) {
+                        days.add(day);
+                    }
                 }
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 e.printStackTrace();
             }
         });
-        return days.stream().sorted(Comparator.comparing(Day::getName)).toList();
+        return days.stream().sorted(Comparator.comparing(AdventDay::getName)).toList();
     }
 }
 
