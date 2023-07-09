@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class Day09a extends Day {
 
-    List<List<String>> posibilities = new ArrayList<>();
+    List<List<String>> possibilities = new ArrayList<>();
 
     public Day09a() {
         super();
@@ -32,7 +32,7 @@ public class Day09a extends Day {
     }
 
     private List<Integer> getTravelsLength() {
-        Map<String, Integer> distances = new HashMap();
+        Map<String, Integer> distances = new HashMap<>();
         Set<String> destinations = new HashSet<>();
 
         for (String input : this.getInput()) {
@@ -48,7 +48,7 @@ public class Day09a extends Day {
         travel(new ArrayList<>(), destinations);
 
         List<Integer> travelsLength = new ArrayList<>();
-        for (List<String> possible : posibilities) {
+        for (List<String> possible : possibilities) {
             Integer length = 0;
             for (int i = 0; i < possible.size() - 1; i++) {
                 if (distances.containsKey(possible.get(i) + "_" + possible.get(i + 1))) {
@@ -63,13 +63,13 @@ public class Day09a extends Day {
     }
 
     public void setResult(List<Integer> travelsLength) {
-        this.setResult(travelsLength.stream().min(Integer::compareTo).get());
+        travelsLength.stream().min(Integer::compareTo).ifPresent(this::setResult);
     }
 
 
     private void travel(List<String> route, Set<String> destinations) {
         if (destinations.isEmpty()) {
-            posibilities.add(route);
+            possibilities.add(route);
             return;
         }
         for (String destination : destinations) {

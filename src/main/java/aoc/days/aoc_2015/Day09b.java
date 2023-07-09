@@ -15,6 +15,6 @@ public class Day09b extends Day09a {
 
     @Override
     public void setResult(List<Integer> travelsLength) {
-        this.setResult(travelsLength.stream().max(Integer::compareTo).get());
+        travelsLength.stream().max(Integer::compareTo).ifPresent(this::setResult);
     }
 }
