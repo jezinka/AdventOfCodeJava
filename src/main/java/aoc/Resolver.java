@@ -1,6 +1,7 @@
 package aoc;
 
 import aoc.days.AdventDay;
+import org.apache.commons.lang3.StringUtils;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
@@ -20,13 +21,19 @@ public class Resolver {
         }
 
         List<AdventDay> days = getDaysByReflection(dayName);
+        List<String> results = new ArrayList<>();
 
-        days.forEach(day ->
+        days.parallelStream().forEach(day ->
                 {
+                    var startTime = System.currentTimeMillis();
                     day.resolve();
-                    System.out.println(day.getName() + " -> " + day.getResult());
+                    var endTime = System.currentTimeMillis();
+
+                    results.add(day.getName() + " -> " + StringUtils.rightPad(day.getResult().toString(), 10) + "(" + (endTime - startTime) + " ms)");
                 }
         );
+
+        results.stream().sorted(String::compareTo).forEach(System.out::println);
     }
 
     private static List<AdventDay> getDaysByReflection(String dayName) {
