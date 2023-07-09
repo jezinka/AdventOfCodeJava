@@ -16,11 +16,6 @@ public class Day10b extends Day10a {
     }
 
     @Override
-    public String getName() {
-        return "2015-10b";
-    }
-
-    @Override
     public int getRounds() {
         return rounds;
     }

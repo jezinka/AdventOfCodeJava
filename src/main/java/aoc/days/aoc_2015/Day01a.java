@@ -15,11 +15,6 @@ public class Day01a extends Day {
     }
 
     @Override
-    public String getName() {
-        return "2015-01a";
-    }
-
-    @Override
     public void resolve() {
         List<String> characters = this.getInputLineSplitBySingleCharacters();
         long openingBracketCount = characters.stream().filter(c -> c.equals("(")).count();

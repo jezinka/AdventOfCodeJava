@@ -14,11 +14,6 @@ public class Day09b extends Day09a {
     }
 
     @Override
-    public String getName() {
-        return "2015-09b";
-    }
-
-    @Override
     public void setResult(List<Integer> travelsLength) {
         this.setResult(travelsLength.stream().max(Integer::compareTo).get());
     }

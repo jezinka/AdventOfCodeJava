@@ -15,11 +15,6 @@ public class Day01b extends Day {
     }
 
     @Override
-    public String getName() {
-        return "2015-01b";
-    }
-
-    @Override
     public void resolve() {
         List<String> inputLineSplitBySingleCharacters = this.getInputLineSplitBySingleCharacters();
 

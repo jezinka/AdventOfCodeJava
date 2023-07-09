@@ -26,11 +26,6 @@ public class Day09a extends Day {
     }
 
     @Override
-    public String getName() {
-        return "2015-09a";
-    }
-
-    @Override
     public void resolve() {
         List<Integer> travelsLength = getTravelsLength();
         setResult(travelsLength);

@@ -19,11 +19,6 @@ public class Day05a extends Day {
     }
 
     @Override
-    public String getName() {
-        return "2015-05a";
-    }
-
-    @Override
     public void resolve() {
         List<String> vowels = List.of("a", "e", "i", "o", "u");
         String backreference = "(.)\\1";

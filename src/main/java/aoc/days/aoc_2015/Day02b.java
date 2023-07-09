@@ -18,11 +18,6 @@ public class Day02b extends Day {
     }
 
     @Override
-    public String getName() {
-        return "2015-02b";
-    }
-
-    @Override
     public void resolve() {
 
 

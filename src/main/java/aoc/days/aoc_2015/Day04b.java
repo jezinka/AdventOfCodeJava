@@ -18,11 +18,6 @@ public class Day04b extends Day {
     }
 
     @Override
-    public String getName() {
-        return "2015-04b";
-    }
-
-    @Override
     public void resolve() {
         String password = this.getInput().get(0);
         this.setResult(findMD5HashStartingWith(password, "000000"));

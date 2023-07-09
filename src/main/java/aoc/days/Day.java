@@ -5,6 +5,8 @@ import aoc.utils.FileUtils;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public abstract class Day implements AdventDay {
 
@@ -51,6 +53,10 @@ public abstract class Day implements AdventDay {
     }
 
     public String getName() {
-        throw new RuntimeException("Day not implemented");
+        Matcher m = Pattern.compile("aoc.days.aoc_(\\d+).Day(\\d+[a-b])").matcher(this.getClass().getName());
+        if (m.matches()) {
+            return m.group(1) + "-" + m.group(2);
+        }
+        throw new RuntimeException("Wrong package, class name combination");
     }
 }

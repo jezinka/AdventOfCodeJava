@@ -26,11 +26,6 @@ public class Day06a extends Day {
     }
 
     @Override
-    public String getName() {
-        return "2015-06a";
-    }
-
-    @Override
     public void resolve() {
         this.board = new HashMap<>();
 

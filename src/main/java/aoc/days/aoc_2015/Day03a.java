@@ -20,11 +20,6 @@ public class Day03a extends Day {
     }
 
     @Override
-    public String getName() {
-        return "2015-03a";
-    }
-
-    @Override
     public void resolve() {
         List<Point> points = new ArrayList<>();
         points.add(new Point(0, 0));

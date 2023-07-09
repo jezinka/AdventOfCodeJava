@@ -18,11 +18,6 @@ public class Day10a extends Day {
     }
 
     @Override
-    public String getName() {
-        return "2015-10a";
-    }
-
-    @Override
     public void resolve() {
         String sequence = getInput().get(0);
 

@@ -21,11 +21,6 @@ public class Day05b extends Day {
     }
 
     @Override
-    public String getName() {
-        return "2015-05b";
-    }
-
-    @Override
     public void resolve() {
 
         AtomicInteger counter = new AtomicInteger(0);

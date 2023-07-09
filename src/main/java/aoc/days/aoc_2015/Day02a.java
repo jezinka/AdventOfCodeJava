@@ -18,11 +18,6 @@ public class Day02a extends Day {
     }
 
     @Override
-    public String getName() {
-        return "2015-02a";
-    }
-
-    @Override
     public void resolve() {
         // 2*l*w + 2*w*h + 2*h*l
         AtomicLong totalFeets = new AtomicLong();
