@@ -11,11 +11,10 @@ import java.util.regex.Pattern;
 
 public class Day06a extends Day {
 
-    private static final String TURN_ON = "turn on";
-    private static final String TURN_OFF = "turn off";
-    private static final String TOGGLE = "toggle";
+    protected static final String TURN_ON = "turn on";
+    protected static final String TOGGLE = "toggle";
 
-    Map<String, Boolean> board;
+    private Map<String, Boolean> board = new HashMap<>();
 
     public Day06a() {
         super("6.txt");
@@ -27,7 +26,6 @@ public class Day06a extends Day {
 
     @Override
     public void resolve() {
-        this.board = new HashMap<>();
 
         this.getInput().forEach(input -> {
             List<Integer> coordinates = getCoordinates(input);
@@ -36,43 +34,29 @@ public class Day06a extends Day {
             int yStart = Math.min(coordinates.get(1), coordinates.get(3));
             int yEnd = Math.max(coordinates.get(1), coordinates.get(3));
 
-            if (input.startsWith(TURN_ON)) {
-                turnOn(xStart, xEnd, yStart, yEnd);
-            } else if (input.startsWith(TURN_OFF)) {
-                turnOff(xStart, xEnd, yStart, yEnd);
-            } else if (input.startsWith(TOGGLE)) {
-                toggle(xStart, xEnd, yStart, yEnd);
+            for (int x = xStart; x <= xEnd; x++) {
+                for (int y = yStart; y <= yEnd; y++) {
+                    String light = "%d,%d".formatted(x, y);
+                    updateBoard(light, input);
+                }
             }
         });
 
-        this.setResult(this.board.values().stream().filter(v -> v.equals(Boolean.TRUE)).count());
+        this.setResult(getCount());
     }
 
-    private void turnOff(int xStart, int xEnd, int yStart, int yEnd) {
-        for (int x = xStart; x <= xEnd; x++) {
-            for (int y = yStart; y <= yEnd; y++) {
-                String light = "%d,%d".formatted(x, y);
-                this.board.put(light, false);
-            }
+    protected void updateBoard(String light, String input) {
+        boolean value;
+        if (input.startsWith(TOGGLE)) {
+            value = !this.board.getOrDefault(light, false);
+        } else {
+            value = input.startsWith(TURN_ON);
         }
+        this.board.put(light, value);
     }
 
-    private void turnOn(int xStart, int xEnd, int yStart, int yEnd) {
-        for (int x = xStart; x <= xEnd; x++) {
-            for (int y = yStart; y <= yEnd; y++) {
-                String light = "%d,%d".formatted(x, y);
-                this.board.put(light, true);
-            }
-        }
-    }
-
-    private void toggle(int xStart, int xEnd, int yStart, int yEnd) {
-        for (int x = xStart; x <= xEnd; x++) {
-            for (int y = yStart; y <= yEnd; y++) {
-                String light = "%d,%d".formatted(x, y);
-                this.board.put(light, !this.board.getOrDefault(light, false));
-            }
-        }
+    protected long getCount() {
+        return this.board.values().stream().filter(v -> v.equals(Boolean.TRUE)).count();
     }
 
     private List<Integer> getCoordinates(String input) {
