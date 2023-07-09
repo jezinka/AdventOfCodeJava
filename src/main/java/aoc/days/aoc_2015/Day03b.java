@@ -12,7 +12,7 @@ import java.util.Set;
 public class Day03b extends Day {
 
     public Day03b() {
-        super("3.txt");
+        super();
     }
 
     public Day03b(List<String> input) {

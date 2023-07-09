@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class Day05a extends Day {
 
     public Day05a() {
-        super("5.txt");
+        super();
     }
 
     public Day05a(List<String> input) {

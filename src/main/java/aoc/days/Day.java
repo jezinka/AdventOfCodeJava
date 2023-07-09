@@ -11,11 +11,18 @@ import java.util.regex.Pattern;
 public abstract class Day implements AdventDay {
 
     private String inputFileName;
+    private String name;
     private List<String> input = new ArrayList<>();
     private Object result;
 
-    public Day(String inputFileName) {
-        this.inputFileName = inputFileName;
+    public Day() {
+        Matcher m = Pattern.compile("aoc.days.aoc_(\\d+).Day(\\d+)([a-b])").matcher(this.getClass().getName());
+        if (m.matches()) {
+            this.inputFileName = m.group(2).replaceFirst("^0", "") + ".txt";
+            this.name = m.group(1) + "-" + m.group(2) + m.group(3);
+        } else {
+            throw new RuntimeException("Wrong package, class name combination");
+        }
         this.prepareInput();
     }
 
@@ -53,10 +60,6 @@ public abstract class Day implements AdventDay {
     }
 
     public String getName() {
-        Matcher m = Pattern.compile("aoc.days.aoc_(\\d+).Day(\\d+[a-b])").matcher(this.getClass().getName());
-        if (m.matches()) {
-            return m.group(1) + "-" + m.group(2);
-        }
-        throw new RuntimeException("Wrong package, class name combination");
+        return name;
     }
 }

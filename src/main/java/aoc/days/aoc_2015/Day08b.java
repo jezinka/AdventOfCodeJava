@@ -12,7 +12,7 @@ public class Day08b extends Day {
     List<List> charactersLength = new ArrayList<>();
 
     public Day08b() {
-        super("8.txt");
+        super();
     }
 
     public Day08b(List<String> input) {

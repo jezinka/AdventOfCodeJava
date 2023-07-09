@@ -10,7 +10,7 @@ import static aoc.utils.HashAlgUtils.findMD5HashStartingWith;
 public class Day04a extends Day {
 
     public Day04a() {
-        super("4.txt");
+        super();
     }
 
     public Day04a(List<String> input) {

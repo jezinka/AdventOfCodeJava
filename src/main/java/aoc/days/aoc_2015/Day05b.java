@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class Day05b extends Day {
 
     public Day05b() {
-        super("5.txt");
+        super();
     }
 
     public Day05b(List<String> input) {

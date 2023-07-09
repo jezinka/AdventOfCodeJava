@@ -17,7 +17,7 @@ public class Day06a extends Day {
     private Map<String, Boolean> board = new HashMap<>();
 
     public Day06a() {
-        super("6.txt");
+        super();
     }
 
     public Day06a(List<String> input) {

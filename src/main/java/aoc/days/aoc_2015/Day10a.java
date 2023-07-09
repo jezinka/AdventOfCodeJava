@@ -10,7 +10,7 @@ public class Day10a extends Day {
     private int rounds = 40;
 
     public Day10a() {
-        super("10.txt");
+        super();
     }
 
     public Day10a(List<String> input) {

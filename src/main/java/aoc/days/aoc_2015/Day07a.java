@@ -21,7 +21,7 @@ public class Day07a extends Day {
     Map<String, Long> board;
 
     public Day07a() {
-        super("7.txt");
+        super();
     }
 
     public Day07a(List<String> input) {

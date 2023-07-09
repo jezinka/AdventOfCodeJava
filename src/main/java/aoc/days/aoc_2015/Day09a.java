@@ -18,7 +18,7 @@ public class Day09a extends Day {
     List<List<String>> posibilities = new ArrayList<>();
 
     public Day09a() {
-        super("9.txt");
+        super();
     }
 
     public Day09a(List<String> input) {
