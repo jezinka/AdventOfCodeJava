@@ -62,4 +62,8 @@ public abstract class Day implements AdventDay {
     public String getName() {
         return name;
     }
+
+    public void setInput(List<String> input) {
+        this.input = input;
+    }
 }
