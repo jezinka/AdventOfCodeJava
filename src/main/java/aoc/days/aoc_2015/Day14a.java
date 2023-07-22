@@ -18,7 +18,7 @@ public class Day14a extends Day {
 
     public Day14a() {
         super();
-        time = 2503;
+        setTime(2503);
     }
 
     public Day14a(List<String> input) {
@@ -27,14 +27,13 @@ public class Day14a extends Day {
 
     @Override
     public void resolve() {
-        List<List> instructions = new ArrayList();
-        this.getInput().forEach(line -> {
-            Matcher matcher = Pattern.compile("(\\w+) can fly (\\d+) km/s for (\\d+) seconds, but then must rest for (\\d+) seconds\\.").matcher(line);
-            if (matcher.matches()) {
-                instructions.add(List.of(matcher.group(1), Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)), Integer.parseInt(matcher.group(4))));
-            }
-        });
+        List<List> instructions = prepareInstructions();
+        getForSecond(this.getTime(), instructions);
 
+        this.setResult(Collections.max(getResults().values()));
+    }
+
+    protected void getForSecond(Integer currentTime, List<List> instructions) {
         instructions.forEach(i -> {
             String reindeerName = i.get(0).toString();
             int speed = (int) i.get(1);
@@ -42,18 +41,27 @@ public class Day14a extends Day {
             int restTime = (int) i.get(3);
 
             int sum = 0;
-            int fullPeriod = this.getTime() / (movingTime + restTime);
-            int residue = this.getTime() % (movingTime + restTime);
+            int fullPeriod = currentTime / (movingTime + restTime);
+            int residue = currentTime % (movingTime + restTime);
             sum += fullPeriod * speed * movingTime;
             if (residue >= movingTime) {
                 sum += movingTime * speed;
             } else {
                 sum += residue * speed;
             }
-            results.put(reindeerName, sum);
+            getResults().put(reindeerName, sum);
         });
+    }
 
-        this.setResult(Collections.max(results.values()));
+    protected List<List> prepareInstructions() {
+        List<List> instructions = new ArrayList();
+        this.getInput().forEach(line -> {
+            Matcher matcher = Pattern.compile("(\\w+) can fly (\\d+) km/s for (\\d+) seconds, but then must rest for (\\d+) seconds\\.").matcher(line);
+            if (matcher.matches()) {
+                instructions.add(List.of(matcher.group(1), Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)), Integer.parseInt(matcher.group(4))));
+            }
+        });
+        return instructions;
     }
 
     public Integer getTime() {

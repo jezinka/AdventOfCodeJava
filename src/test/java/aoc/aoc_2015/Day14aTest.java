@@ -8,12 +8,14 @@ import java.util.List;
 
 class Day14aTest {
 
+    public static final List<String> REINDEERS = List.of(
+            "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.",
+            "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.");
+
     @Test
     void resolve() {
         //given:
-        Day14a day = new Day14a(List.of(
-                "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.",
-                "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds."));
+        Day14a day = new Day14a(REINDEERS);
         day.setTime(1000);
         //when:
         day.resolve();
@@ -27,9 +29,7 @@ class Day14aTest {
     @Test
     void resolve_1() {
         //given:
-        Day14a day = new Day14a(List.of(
-                "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.",
-                "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds."));
+        Day14a day = new Day14a(REINDEERS);
         day.setTime(1);
         //when:
         day.resolve();
@@ -43,9 +43,7 @@ class Day14aTest {
     @Test
     void resolve_11() {
         //given:
-        Day14a day = new Day14a(List.of(
-                "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.",
-                "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds."));
+        Day14a day = new Day14a(REINDEERS);
         day.setTime(11);
         //when:
         day.resolve();
@@ -59,9 +57,7 @@ class Day14aTest {
     @Test
     void resolve_12() {
         //given:
-        Day14a day = new Day14a(List.of(
-                "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.",
-                "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds."));
+        Day14a day = new Day14a(REINDEERS);
         day.setTime(12);
         //when:
         day.resolve();
@@ -75,9 +71,7 @@ class Day14aTest {
     @Test
     void resolve_138() {
         //given:
-        Day14a day = new Day14a(List.of(
-                "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.",
-                "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds."));
+        Day14a day = new Day14a(REINDEERS);
         day.setTime(138);
         //when:
         day.resolve();
@@ -91,9 +85,7 @@ class Day14aTest {
     @Test
     void resolve_174() {
         //given:
-        Day14a day = new Day14a(List.of(
-                "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.",
-                "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds."));
+        Day14a day = new Day14a(REINDEERS);
         day.setTime(174);
         //when:
         day.resolve();
