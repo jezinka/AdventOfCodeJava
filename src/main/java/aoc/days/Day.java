@@ -18,8 +18,8 @@ public abstract class Day implements AdventDay {
     public Day() {
         Matcher m = Pattern.compile("aoc.days.aoc_(\\d+).Day(\\d+)([a-b])").matcher(this.getClass().getName());
         if (m.matches()) {
-            this.inputFileName = m.group(2).replaceFirst("^0", "") + ".txt";
-            this.name = m.group(1) + "-" + m.group(2) + m.group(3);
+            this.inputFileName = "%s/%s.txt".formatted(m.group(1), m.group(2).replaceFirst("^0", ""));
+            this.name = "%s-%s%s".formatted(m.group(1), m.group(2), m.group(3));
         } else {
             throw new RuntimeException("Wrong package, class name combination");
         }
