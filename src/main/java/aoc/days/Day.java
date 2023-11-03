@@ -2,6 +2,7 @@ package aoc.days;
 
 import aoc.utils.FileUtils;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,12 @@ public abstract class Day implements AdventDay {
     private Object result;
 
     public Day() {
-        Matcher m = Pattern.compile("aoc.days.aoc_(\\d+).Day(\\d+)([a-b])").matcher(this.getClass().getName());
+        Matcher m = Pattern.compile("aoc.days.aoc_(?<year>\\d+).Day(?<day>\\d+)(?<part>[a-b])").matcher(this.getClass().getName());
         if (m.matches()) {
-            this.inputFileName = "%s/%s.txt".formatted(m.group(1), m.group(2).replaceFirst("^0", ""));
-            this.name = "%s-%s%s".formatted(m.group(1), m.group(2), m.group(3));
+            String year = m.group("year");
+            String day = m.group("day");
+            this.inputFileName = "%s%s%s.txt".formatted(year, File.separator, day.replaceFirst("^0", ""));
+            this.name = "%s-%s%s".formatted(year, day, m.group("part"));
         } else {
             throw new RuntimeException("Wrong package, class name combination");
         }
