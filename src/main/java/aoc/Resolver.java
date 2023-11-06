@@ -44,7 +44,7 @@ public class Resolver {
             try {
                 if (!Modifier.isAbstract(clazz.getModifiers())) {
                     AdventDay day = clazz.getDeclaredConstructor().newInstance();
-                    if (dayName.isBlank() || dayName.isEmpty() || day.getName().equals(dayName)) {
+                    if (dayName.isBlank() || dayName.isEmpty() || day.getName().startsWith(dayName)) {
                         days.add(day);
                     }
                 }
