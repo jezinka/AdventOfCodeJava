@@ -20,15 +20,15 @@ public class Day05a extends Day {
         String input = this.getInput().get(0);
         long counter = 0;
 
-        String password = "";
+        StringBuilder password = new StringBuilder();
         while (password.length() < 8) {
             String md5Hex = DigestUtils.md5Hex(input + counter);
             if (md5Hex.startsWith("00000")) {
                 String passwordChunk = md5Hex.substring(5, 6);
-                password += passwordChunk;
+                password.append(passwordChunk);
             }
             counter++;
         }
-        setResult(password);
+        setResult(password.toString());
     }
 }
