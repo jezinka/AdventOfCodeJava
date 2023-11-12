@@ -2,6 +2,8 @@ package aoc.days.aoc_2015;
 
 import java.util.List;
 
+import static aoc.utils.XyUtils.ON;
+
 
 public class Day18b extends Day18a {
 

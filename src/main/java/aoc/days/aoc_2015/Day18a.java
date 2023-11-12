@@ -3,11 +3,9 @@ package aoc.days.aoc_2015;
 import aoc.days.Day;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static aoc.utils.XyUtils.prepareBoard;
-import static aoc.utils.XyUtils.printBoard;
+import static aoc.utils.XyUtils.*;
 
 
 public class Day18a extends Day {
@@ -15,9 +13,6 @@ public class Day18a extends Day {
     private boolean showPreview = false;
     private int steps;
     private String[][] board;
-
-    public static final String ON = "#";
-    public static final String OFF = ".";
 
     public Day18a() {
         super();
@@ -42,13 +37,11 @@ public class Day18a extends Day {
                     tempBoard[i][j] = getNewState(i, j);
                 }
             }
-            for (int i = 0; i < board.length; i++) {
-                System.arraycopy(tempBoard[i], 0, board[i], 0, board[i].length);
-            }
+            copyArray(tempBoard, board);
             if (showPreview) printBoard(board);
         }
 
-        long counter = Arrays.stream(board).mapToLong(strings -> Arrays.stream(strings).filter(string -> string.equals(ON)).count()).sum();
+        long counter = getLit(board);
         setResult(counter);
     }
 
