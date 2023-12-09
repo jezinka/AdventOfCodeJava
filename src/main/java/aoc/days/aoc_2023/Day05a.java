@@ -113,11 +113,11 @@ public class Day05a extends Day {
         }
 
         public boolean isInStartRange(Long s) {
-            return sourceStart <= s && s <= sourceStart + range;
+            return sourceStart <= s && s < sourceStart + range;
         }
 
         public boolean isInDestinationRange(Long s) {
-            return destinationStart <= s && s <= destinationStart + range;
+            return destinationStart <= s && s < destinationStart + range;
         }
     }
 }
