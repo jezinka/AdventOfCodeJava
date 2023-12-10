@@ -9,50 +9,62 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class Resolver {
-
     public static void main(String[] args) {
-
-        String dayName = "";
-        if (args.length != 0) {
-            dayName = args[0];
-        }
-
+        var dayName = args.length != 0 ? args[0] : "";
         List<AdventDay> days = getDaysByReflection(dayName);
-        List<String> results = new ArrayList<>();
-
-        days.parallelStream().forEach(day ->
-                {
-                    var startTime = System.currentTimeMillis();
-                    day.resolve();
-                    var endTime = System.currentTimeMillis();
-
-                    results.add(day.getName() + " -> " + StringUtils.rightPad(day.getResult().toString(), 10) + "(" + (endTime - startTime) + " ms)");
-                }
-        );
-
-        results.stream().sorted(String::compareTo).forEach(System.out::println);
+        executeDays(days);
     }
 
     private static List<AdventDay> getDaysByReflection(String dayName) {
         List<AdventDay> days = new ArrayList<>();
+        Set<Class<? extends AdventDay>> classes = getAdventDayClasses();
+
+        classes.stream()
+                .filter(clazz -> !Modifier.isAbstract(clazz.getModifiers()))
+                .map(Resolver::instantiateAdventDay)
+                .filter(Objects::nonNull)
+                .filter(day -> StringUtils.isBlank(dayName) || day.getName().startsWith(dayName))
+                .sorted(Comparator.comparing(AdventDay::getName))
+                .forEach(days::add);
+
+        return days;
+    }
+
+    private static Set<Class<? extends AdventDay>> getAdventDayClasses() {
         Reflections reflections = new Reflections("aoc.days");
-        Set<Class<? extends AdventDay>> classes = reflections.getSubTypesOf(AdventDay.class);
-        classes.forEach(clazz -> {
-            try {
-                if (!Modifier.isAbstract(clazz.getModifiers())) {
-                    AdventDay day = clazz.getDeclaredConstructor().newInstance();
-                    if (dayName.isBlank() || dayName.isEmpty() || day.getName().startsWith(dayName)) {
-                        days.add(day);
-                    }
-                }
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-                e.printStackTrace();
-            }
-        });
-        return days.stream().sorted(Comparator.comparing(AdventDay::getName)).toList();
+        return reflections.getSubTypesOf(AdventDay.class);
+    }
+
+    private static AdventDay instantiateAdventDay(Class<? extends AdventDay> clazz) {
+        try {
+            return clazz.getDeclaredConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                 NoSuchMethodException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private static void executeDays(List<AdventDay> days) {
+        List<String> results = days.parallelStream()
+                .map(Resolver::resolveAndFormatDay)
+                .toList();
+        results.stream().sorted(String::compareTo).forEach(System.out::println);
+    }
+
+    private static String resolveAndFormatDay(AdventDay day) {
+        var startTime = System.currentTimeMillis();
+        day.resolve();
+        var endTime = System.currentTimeMillis();
+        return formatDayResult(day, startTime, endTime);
+    }
+
+    private static String formatDayResult(AdventDay day, long startTime, long endTime) {
+        return day.getName() + " -> " + StringUtils.rightPad(day.getResult().toString(), 20) + "(" + (endTime - startTime) + " ms)";
     }
 }
 
