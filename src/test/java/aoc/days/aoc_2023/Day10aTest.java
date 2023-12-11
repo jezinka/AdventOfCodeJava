@@ -26,7 +26,7 @@ public class Day10aTest {
         day.resolve();
 
         //then:
-        Assertions.assertEquals(4, day.getResult());
+        Assertions.assertEquals(4L, day.getResult());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class Day10aTest {
         day.resolve();
 
         //then:
-        Assertions.assertEquals(8, day.getResult());
+        Assertions.assertEquals(8L, day.getResult());
     }
 
     @ParameterizedTest
