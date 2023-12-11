@@ -20,22 +20,22 @@ public class Day11a extends Day {
 
     @Override
     public void resolve() {
-        List<Point> galactics = getExtendedGalacticsLocation();
-        List<List<Point>> pairs = new ArrayList<>();
+        List<List<Long>> galactics = getExtendedGalacticsLocation();
+        List<List<List<Long>>> pairs = new ArrayList<>();
         for (int i = 0; i < galactics.size(); i++) {
             for (int j = i + 1; j < galactics.size(); j++) {
-                pairs.add(List.of(galactics.get(i), galactics.get(j)));
+                pairs.add(List.of(List.of(galactics.get(i).get(0), galactics.get(i).get(1)), List.of(galactics.get(j).get(0), galactics.get(j).get(1))));
             }
         }
-        int galacticsDistance = pairs.stream().map(p -> Map.entry(p, calculateManhattanDistance(p))).mapToInt(Map.Entry::getValue).sum();
+        long galacticsDistance = pairs.stream().map(p -> Map.entry(p, calculateManhattanDistance(p))).mapToLong(Map.Entry::getValue).sum();
         setResult(galacticsDistance);
     }
 
-    private int calculateManhattanDistance(List<Point> p) {
-        return Math.abs(p.get(0).x - p.get(1).x) + Math.abs(p.get(0).y - p.get(1).y);
+    private long calculateManhattanDistance(List<List<Long>> p) {
+        return Math.abs(p.get(0).get(0) - p.get(1).get(0)) + Math.abs(p.get(0).get(1) - p.get(1).get(1));
     }
 
-    private List<Point> getExtendedGalacticsLocation() {
+    private List<List<Long>> getExtendedGalacticsLocation() {
         List<Integer> emptyRows = new ArrayList<>();
         List<Integer> emptyColumns = new ArrayList<>();
 
@@ -67,22 +67,26 @@ public class Day11a extends Day {
             }
         }
 
-//        // createUniverse
-//        String[][] universe = new String[getInput().size() + emptyRows.size()][getInput().get(0).length() + emptyColumns.size()];
-//        for (String[] strings : universe) {
-//            Arrays.fill(strings, ".");
-//        }
-
-        List<Point> expandedGalactics = new ArrayList<>();
+        List<List<Long>> expandedGalactics = new ArrayList<>();
         galactics.forEach(p ->
                 {
-                    int newX = p.x + (int) emptyRows.stream().filter(x -> x < p.x).count();
-                    int newY = p.y + (int) emptyColumns.stream().filter(y -> y < p.y).count();
-//                    universe[newX][newY] = "#";
-                    expandedGalactics.add(new Point(newX, newY));
+                    long newX = p.x + getExpansionRow(p.x, emptyRows);
+                    long newY = p.y + getExpansionColumn(p.y, emptyColumns);
+                    expandedGalactics.add(List.of(newX, newY));
                 }
         );
-//        XyUtils.printBoard(universe);
         return expandedGalactics;
+    }
+
+    private long getExpansionColumn(Integer py, List<Integer> emptyColumns) {
+        return emptyColumns.stream().filter(y -> y < py).count() * getExpansionRate();
+    }
+
+    private long getExpansionRow(Integer px, List<Integer> emptyRows) {
+        return emptyRows.stream().filter(x -> x < px).count() * getExpansionRate();
+    }
+
+    public int getExpansionRate() {
+        return 1;
     }
 }

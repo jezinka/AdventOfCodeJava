@@ -26,6 +26,6 @@ public class Day11aTest {
         day.resolve();
 
         //then:
-        Assertions.assertEquals(374, day.getResult());
+        Assertions.assertEquals(374L, day.getResult());
     }
 }
