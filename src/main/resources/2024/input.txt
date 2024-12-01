@@ -1,0 +1,2 @@
+sample input file
+put here input with name dayNo.txt e.g. 1.txt
