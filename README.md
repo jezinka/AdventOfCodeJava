@@ -29,6 +29,7 @@ Można także uruchomić wszystkie dostępne zadania z konkretnego roku:
 | 2024    | A           | B  |
 |---------|-------------|----|
 | Dzień 1 | ✅  | ✅  |
+| Dzień 2 | ✅  | ✅  |
 
 
 ## Ubiegłe lata w tym repozytorium
