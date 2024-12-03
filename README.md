@@ -30,6 +30,7 @@ Można także uruchomić wszystkie dostępne zadania z konkretnego roku:
 |---------|-------------|----|
 | Dzień 1 | ✅  | ✅  |
 | Dzień 2 | ✅  | ✅  |
+| Dzień 3 | ✅  | ✅  |
 
 
 ## Ubiegłe lata w tym repozytorium
