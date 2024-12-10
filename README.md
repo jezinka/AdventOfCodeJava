@@ -27,17 +27,18 @@ Można także uruchomić wszystkie dostępne zadania z konkretnego roku:
 
 ## Postępy 2024
 
-| 2024    | A | B |
-|---------|---|--|
-| Dzień 1 | ✅ | ✅ |
-| Dzień 2 | ✅ | ✅ |
-| Dzień 3 | ✅ | ✅ |
-| Dzień 4 | ✅ | ✅ |
-| Dzień 5 | ✅ | ✅ |
-| Dzień 6 | ✅ | ✅ |
-| Dzień 7 | ✅ | ✅ |
-| Dzień 8 | ✅ | ✅ |
-| Dzień 9 | ✅ |  |
+| 2024     | A | B |
+|----------|---|--|
+| Dzień 1  | ✅ | ✅ |
+| Dzień 2  | ✅ | ✅ |
+| Dzień 3  | ✅ | ✅ |
+| Dzień 4  | ✅ | ✅ |
+| Dzień 5  | ✅ | ✅ |
+| Dzień 6  | ✅ | ✅ |
+| Dzień 7  | ✅ | ✅ |
+| Dzień 8  | ✅ | ✅ |
+| Dzień 9  | ✅ |  |
+| Dzień 10 | ✅ |✅  |
 
 ## Ubiegłe lata w tym repozytorium
 
