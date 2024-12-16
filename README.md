@@ -40,6 +40,7 @@ Można także uruchomić wszystkie dostępne zadania z konkretnego roku:
 | Dzień 9  | ✅ | |
 | Dzień 10 | ✅ |✅ |
 | Dzień 11 | ✅ | |
+| Dzień 14 | ✅ |✅ |
 
 ## Ubiegłe lata w tym repozytorium
 
